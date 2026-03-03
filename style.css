@@ -1,0 +1,169 @@
+:root {
+    --verde-oliva: #556B2F;
+    --dourado: #D4AF37;
+    --off-white: #FCFAFA;
+    --texto: #333333;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html, body {
+    width: 100%;
+    /* O dvh garante que o fundo sempre preencha o espaço entre as barras do Safari */
+    height: 100dvh;
+    margin: 0;
+    padding: 0;
+    /* A cor de fundo aqui ajuda a evitar o "flash branco" no iPhone */
+    background-color: var(--off-white);
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* Trava o scroll enquanto a pessoa não clica no lacre */
+body.travar-scroll {
+    overflow: hidden;
+    position: fixed; 
+}
+
+#canvas-particles {
+    position: fixed;
+    top: 0; left: 0;
+    pointer-events: none;
+    z-index: 2000;
+}
+
+/* --- CAPA (HERO) --- */
+.hero {
+    position: fixed;
+    inset: 0;
+    height: 100dvh;
+    width: 100%;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+    background-image: url('papel-de-parede.JPG');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    transition: opacity 0.8s ease;
+}
+
+.overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.25);
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    /* O segredo do notch: empurra o conteúdo para fora da área da câmera */
+    padding-top: env(safe-area-inset-top);
+    padding-bottom: env(safe-area-inset-bottom);
+}
+
+.envelope-wrapper {
+    position: relative;
+    width: 75%;
+    max-width: 280px;
+}
+
+.carta-img {
+    width: 100%;
+    height: auto;
+    filter: drop-shadow(0 10px 25px rgba(0,0,0,0.4));
+}
+
+.wax-seal {
+    position: relative;
+    width: 65px; height: 65px;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+}
+
+.wax-seal img { 
+    width: 65%; 
+    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.5));
+}
+
+.instrucao-lacre {
+    color: rgb(255, 255, 255);
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-top: 30px;
+    text-shadow: 1px 1px 4px rgba(0,0,0,0.8);
+}
+
+/* --- CONTEÚDO --- */
+.main-content {
+    display: none;
+    background-color: var(--off-white);
+    /* Garante que o texto não fique colado no topo (notch) ou base */
+    padding: calc(60px + env(safe-area-inset-top)) 25px calc(60px + env(safe-area-inset-bottom));
+    text-align: center;
+    min-height: 100dvh;
+}
+
+.brasao-principal {
+    width: 100px;
+    margin-bottom: 25px;
+    filter: invert(41%) sepia(59%) saturate(468%) hue-rotate(1deg) brightness(91%) contrast(89%);
+}
+
+.nomes {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    color: var(--verde-oliva);
+}
+
+.data-texto {
+    font-size: 0.9rem;
+    color: var(--dourado);
+    font-weight: 600;
+}
+
+.divider {
+    width: 40px; height: 1px;
+    background: var(--dourado);
+    margin: 25px auto;
+}
+
+.btn-action {
+    display: block;
+    padding: 18px;
+    background: var(--verde-oliva);
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    margin-bottom: 12px;
+    font-size: 0.8rem;
+    border-radius: 2px;
+}
+
+.btn-action.outline {
+    background: transparent;
+    border: 1px solid var(--verde-oliva);
+    color: var(--verde-oliva);
+}
+
+.rsvp-card {
+    margin-top: 50px;
+    padding: 30px 20px;
+    background: white;
+    border: 1px solid #eee;
+}
+
+.footer {
+    margin-top: 50px;
+    padding-bottom: env(safe-area-inset-bottom);
+    font-size: 0.7rem;
+    color: var(--dourado);
+}

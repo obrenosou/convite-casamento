@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>B & N — 26.07.2026</title>
+    
+    <meta property="og:title" content="Convite de Casamento: Naiane & Breno">
+    <meta property="og:description" content="Você é nosso convidado especial! Toque para abrir o convite.">
+    <meta property="og:type" content="website">
+
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="mobile-web-app-capable" content="yes">
+
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --verde-oliva: #556B2F;
+            --dourado: #D4AF37;
+            --off-white: #FCFAFA;
+            --texto: #333333;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html, body {
+            width: 100%; height: 100dvh; 
+            margin: 0; padding: 0;
+            background-color: var(--off-white);
+            font-family: 'Montserrat', sans-serif;
+            overflow-x: hidden;
+        }
+
+        body.travar { position: fixed; overflow: hidden; width: 100%; height: 100%; }
+
+        #canvas-particles { position: fixed; inset: 0; pointer-events: none; z-index: 2000; }
+
+        /* --- CAPA (HERO) --- */
+        .hero {
+            position: fixed;
+            inset: 0;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end; 
+            align-items: center;
+            background-image: url('papel-de-parede.JPG');
+            background-size: cover;
+            background-position: center 5%; 
+            background-repeat: no-repeat;
+            transition: opacity 0.8s ease, visibility 0.8s ease;
+        }
+
+        .overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, 
+                rgba(0,0,0,0.3) 0%, 
+                transparent 40%, 
+                transparent 60%, 
+                rgba(252, 250, 250, 0.8) 85%, 
+                var(--off-white) 100%);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            padding-bottom: calc(0.0dvh + env(safe-area-inset-bottom));
+        }
+
+        .mensagem-topo {
+            position: absolute;
+            top: -40dvh; 
+            width: 85%;
+            text-align: center;
+            color: white;
+            text-shadow: 2px 2px 15px rgba(0,0,0,0.7);
+            animation: fadeIn 2.5s ease;
+        }
+
+        .mensagem-topo h2 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 400;
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+            font-style: italic;
+            line-height: 1.3;
+        }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+
+        .envelope-wrapper {
+            position: relative;
+            width: 82vw;
+            max-width: 400px;
+            transform: scale(0.87);
+            transform-origin: bottom center;
+        }
+
+        .carta-img { width: 100%; height: auto; filter: drop-shadow(0 15px 35px rgba(0,0,0,0.3)); }
+        
+        /* POSIÇÃO E TAMANHO DO LACRE ATUALIZADOS */
+        .wax-seal { 
+            position: absolute; 
+            top: 62%; 
+            left: 50%;
+            width: 53px; 
+            height: 53px; 
+            transform: translate(-50%, -50%); 
+            cursor: pointer; 
+            transition: transform 0.2s ease; 
+            z-index: 10;
+        }
+
+        .wax-seal:active { transform: translate(-50%, -50%) scale(0.9); }
+        .wax-seal img { width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0 5px 12px rgba(0,0,0,0.4)); }
+
+        /* --- CONTEÚDO PRINCIPAL --- */
+        .main-content {
+            display: none;
+            position: relative;
+            z-index: 5;
+            background-color: var(--off-white);
+            padding: calc(60px + env(safe-area-inset-top)) 25px 60px;
+            text-align: center;
+            min-height: 100dvh;
+            opacity: 0;
+            transition: opacity 1s ease;
+        }
+        
+        .main-content.visivel { opacity: 1; }
+        .brasao-principal { width: 110px; margin-bottom: 25px; filter: invert(41%) sepia(59%) saturate(468%) hue-rotate(1deg) brightness(91%) contrast(89%); }
+        .nomes { font-family: 'Playfair Display', serif; font-size: 2.3rem; color: var(--verde-oliva); }
+        .data-texto { font-size: 0.95rem; color: var(--dourado); font-weight: 600; margin-top: 8px; }
+        .divider { width: 40px; height: 1px; background: var(--dourado); margin: 25px auto; }
+        .texto-convite { font-size: 0.9rem; line-height: 1.7; margin-bottom: 40px; }
+        .btn-action { display: block; padding: 18px; background: var(--verde-oliva); color: white; text-decoration: none; font-weight: 600; margin-bottom: 15px; font-size: 0.8rem; letter-spacing: 1px; }
+        .btn-action.outline { background: transparent; border: 1px solid var(--verde-oliva); color: var(--verde-oliva); }
+        .footer { margin-top: 60px; font-size: 0.7rem; color: var(--dourado); padding-bottom: env(safe-area-inset-bottom); }
+    </style>
+</head>
+<body class="travar">
+
+    <audio id="musica-tema" loop preload="auto">
+        <source src="musica.mp3" type="audio/mpeg">
+    </audio>
+
+    <canvas id="canvas-particles"></canvas>
+
+    <section class="hero" id="hero-section">
+        <div class="overlay"></div>
+        <div class="hero-content">
+            <div class="mensagem-topo">
+                <h2 id="guest-name">Seja bem-vindo!</h2>
+            </div>
+            <div class="envelope-wrapper">
+                <img src="carta.png" alt="Carta" class="carta-img">
+                <div class="wax-seal" onclick="abrirExperiencia()">
+                    <img src="lacre.png" alt="Lacre">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <main class="main-content" id="main-content">
+        <section class="content-section">
+            <img src="brasao.png" alt="Brasão B&N" class="brasao-principal">
+            <h1 class="nomes">Naiane & Breno</h1>
+            <p class="data-texto">26 de Julho de 2026 | 16:30h</p>
+            <div class="divider"></div>
+            <p class="texto-convite">Com a benção de Deus e de nossos pais, convidamos você para celebrar nossa união.</p>
+            <div class="btn-group">
+                <a href="URL_DO_MAPA_AQUI" class="btn-action">VER LOCALIZAÇÃO</a>
+                <a href="URL_DA_LISTA_AQUI" class="btn-action outline">LISTA DE PRESENTES</a>
+            </div>
+            <div class="rsvp-card">
+                <h3>Confirmar Presença</h3>
+                <a href="URL_DO_FORMULARIO_RSVP" class="btn-action" style="text-decoration: none;">CONFIRMAR AGORA</a>
+            </div>
+        </section>
+        <footer class="footer">B & N | 2026</footer>
+    </main>
+
+    <script>
+        window.addEventListener("load", function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const nomeGuest = urlParams.get('n');
+            const displayNome = document.getElementById('guest-name');
+            
+            if (nomeGuest) {
+                displayNome.innerText = `${nomeGuest}, nós te convidamos! Você é especial para nós.`;
+            } else {
+                displayNome.innerText = "Nossa história ganha um novo capítulo e você faz parte dela!";
+            }
+            setTimeout(function() { window.scrollTo(0, 1); }, 0);
+        });
+
+        function abrirExperiencia() {
+            const hero = document.getElementById('hero-section');
+            const musica = document.getElementById('musica-tema');
+            const main = document.getElementById('main-content');
+            
+            musica.play().catch(e => console.log("Áudio bloqueado"));
+            
+            hero.style.opacity = '0';
+            hero.style.visibility = 'hidden';
+            setTimeout(() => {
+                hero.style.display = 'none';
+                main.style.display = 'block';
+                setTimeout(() => { main.classList.add('visivel'); }, 50);
+                document.body.classList.remove('travar');
+                window.scrollTo(0, 0);
+            }, 800);
+        }
+
+        // Partículas Douradas
+        const canvas = document.getElementById('canvas-particles');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+        function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+        window.addEventListener('resize', resize);
+        resize();
+        class Particle {
+            constructor(x, y) {
+                this.x = x; this.y = y;
+                this.size = Math.random() * 2 + 1;
+                this.speedX = (Math.random() - 0.5) * 3;
+                this.speedY = (Math.random() - 0.5) * 3;
+                this.color = '#D4AF37'; 
+                this.opacity = 1;
+            }
+            update() { this.x += this.speedX; this.y += this.speedY; this.opacity -= 0.02; }
+            draw() { ctx.globalAlpha = this.opacity; ctx.fillStyle = this.color; ctx.beginPath(); ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2); ctx.fill(); }
+        }
+        window.addEventListener('touchstart', (e) => {
+            const touch = e.touches[0];
+            for (let i = 0; i < 8; i++) particles.push(new Particle(touch.clientX, touch.clientY));
+        });
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach((p, i) => { p.update(); p.draw(); if (p.opacity <= 0) particles.splice(i, 1); });
+            requestAnimationFrame(animate);
+        }
+        animate();
+    </script>
+</body>
+</html>
