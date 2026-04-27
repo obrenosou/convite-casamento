@@ -1,579 +1,846 @@
 <!DOCTYPE html>
 
+
 <html lang="pt-br">
+
 
 <head>
 
+
 <meta charset="UTF-8">
+
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
 
+
 <title>B & N — 26.07.2026</title>
+
 
 <meta property="og:title" content="Breno & Naiane">
 
+
 <meta property="og:description" content="segue o seu convite individual para o nosso casamento">
+
 
 <meta property="og:image" content="https://obrenosou.github.io/convite-casamento/previewweb.png">
 
+
 <meta property="og:type" content="website">
+
 
 
 <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 
 
+
 <style>
+
 
 @font-face {
 
+
 font-family: 'Eyesome Script';
+
 
 src: url('eyesome.otf') format('opentype');
 
+
 font-weight: normal; font-style: normal;
 
+
 }
+
 
 
 :root {
 
+
 --verde-oliva: #556B2F;
+
 
 --dourado: #D4AF37;
 
+
 --off-white: #FCFAFA;
+
 
 --texto-carta: #4e3712; 
 
+
 }
+
 
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 
+
 html, body {
+
 
 width: 100%; height: 100dvh; 
 
+
 background-color: var(--off-white);
+
 
 font-family: 'Montserrat', sans-serif;
 
+
 overflow: hidden;
 
+
 }
+
 
 
 body.travar { position: fixed; overflow: hidden; width: 100%; height: 100%; }
 
 
+
 /* --- CORTINA INICIAL --- */
+
 
 #intro-overlay {
 
+
 position: fixed;
+
 
 inset: 0;
 
+
 z-index: 5000;
+
 
 display: flex;
 
+
 flex-direction: column;
+
 
 justify-content: flex-end;
 
+
 align-items: center;
+
 
 background-image: linear-gradient(to top, rgba(255,255,255,0.4) 0%, transparent 60%), url('cortina.jpg');
 
+
 background-size: cover;
+
 
 background-position: center;
 
+
 padding-bottom: 8dvh;
+
 
 transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
 
+
 }
+
 
 
 .intro-box {
 
+
 background: rgba(255, 255, 255, 0.55);
+
 
 backdrop-filter: blur(15px);
 
+
 -webkit-backdrop-filter: blur(15px);
+
 
 padding: 30px 25px;
 
+
 border-radius: 20px;
+
 
 width: 90%;
 
+
 max-width: 380px;
+
 
 text-align: center;
 
+
 border: 1px solid rgba(255, 255, 255, 0.4);
+
 
 box-shadow: 0 15px 35px rgba(0,0,0,0.15);
 
+
 animation: boxSlideUp 1.2s forwards;
 
+
 }
+
 
 
 @keyframes boxSlideUp { from { opacity: 0; transform: translateY(50px); } to { opacity: 1; transform: translateY(0); } }
 
 
+
 .btn-intro {
+
 
 background: var(--verde-oliva);
 
+
 color: white;
+
 
 border: none;
 
+
 padding: 12px 40px;
+
 
 border-radius: 30px;
 
+
 font-size: 0.8rem;
+
 
 font-weight: 600;
 
+
 text-transform: uppercase;
+
 
 letter-spacing: 2px;
 
+
 cursor: pointer;
 
+
 }
+
 
 
 .intro-exit { opacity: 0 !important; visibility: hidden !important; transform: translateY(30px) scale(0.98) !important; }
 
 
+
 /* --- HERO & CAPA --- */
+
 
 .hero {
 
+
 position: fixed;
+
 
 inset: 0;
 
+
 z-index: 1000;
+
 
 display: flex;
 
+
 flex-direction: column;
+
 
 justify-content: flex-end; 
 
+
 align-items: center;
+
 
 background-image: url('papel-de-parede.JPG');
 
+
 background-size: cover;
+
 
 background-position: center 5%;
 
+
 perspective: 1200px;
 
+
 }
+
 
 
 .overlay {
 
+
 position: absolute;
+
 
 inset: 0;
 
+
 background: linear-gradient(to bottom, rgba(0,0,0,0.2) 0%, transparent 60%, var(--off-white) 100%);
+
 
 z-index: 1;
 
+
 }
+
 
 
 /* CORREÇÃO DEFINITIVA: MENSAGEM NO TOPO DA TELA [cite: 2026-03-06] */
 
+
 .mensagem-topo {
+
 
 position: absolute;
 
+
 top: 12%; /* Posição fixa no céu da imagem [cite: 2026-03-06] */
+
 
 width: 85%;
 
+
 text-align: center;
+
 
 color: #ffffff;
 
+
 text-shadow: 2px 2px 15px rgba(0,0,0,0.9);
+
 
 z-index: 2500; /* Acima do envelope [cite: 2026-03-06] */
 
+
 pointer-events: none;
 
+
 }
+
 
 
 .mensagem-topo h2 { font-family: 'Playfair Display', serif; font-size: 1.25rem; font-style: italic; line-height: 1.4; }
 
 
+
 .envelope-wrapper {
+
 
 position: relative;
 
+
 width: 82vw;
+
 
 max-width: 400px;
 
+
 transform: scale(0.87);
+
 
 transform-origin: bottom center;
 
+
 z-index: 2;
+
 
 margin-bottom: 2dvh;
 
+
 }
+
 
 
 .envelope-flap {
 
+
 position: absolute;
+
 
 top: 0; left: 0;
 
+
 width: 100%; height: 100%;
+
 
 z-index: 3;
 
+
 transform-origin: top;
+
 
 transition: transform 2.5s ease-in-out;
 
+
 backface-visibility: hidden;
 
+
 }
+
 
 
 .wax-seal { 
 
+
 position: absolute; 
+
 
 top: 62%; left: 50%;
 
+
 width: 53px; height: 53px; 
+
 
 transform: translate(-50%, -50%); 
 
+
 cursor: pointer; 
+
 
 z-index: 4;
 
+
 transition: transform 2.5s ease-in-out, opacity 1.2s ease;
 
+
 }
+
 
 
 .abrir-flap { transform: rotateX(180deg); }
 
+
 .subir-lacre { transform: translate(-50%, -350%) scale(0.8); opacity: 0; }
+
 
 
 /* --- INTERIOR --- */
 
+
 .main-content {
+
 
 display: none;
 
+
 position: relative;
+
 
 z-index: 5001; /* Garante que fique acima da cortina se necessário */
 
+
 background-image: url('pagina1.png');
+
 
 background-size: cover; 
 
+
 background-position: center;
+
 
 background-attachment: fixed;
 
+
 height: 100dvh; width: 100%;
+
 
 opacity: 0;
 
+
 transform: translateY(30px);
+
 
 transition: opacity 1.5s ease, transform 1.5s cubic-bezier(0.2, 1, 0.3, 1);
 
+
 }
+
 
 .main-content.visivel { opacity: 1; transform: translateY(0); }
 
 
+
 .carta-layout {
+
 
 height: 100%;
 
+
 display: flex;
+
 
 flex-direction: column;
 
+
 justify-content: space-between;
+
 
 max-width: 450px;
 
+
 margin: 0 auto;
 
+
 }
+
 
 
 .fixed-top-wrapper { flex-shrink: 0; width: 100%; height: 25dvh; }
 
 
+
 .scroll-box {
+
 
 flex-grow: 1;
 
+
 overflow-y: auto;
+
 
 margin-bottom: 5px;
 
+
 padding: 0 30px;
+
 
 scrollbar-width: thin;
 
+
 scrollbar-color: var(--dourado) transparent;
 
+
 }
+
 
 
 .scroll-box::-webkit-scrollbar { width: 3px; }
 
+
 .scroll-box::-webkit-scrollbar-thumb { background: var(--dourado); border-radius: 10px; }
+
 
 
 .saudacao { font-family: 'Great Vibes', cursive; font-size: 2.3rem; color: var(--texto-carta); margin-bottom: 10px; }
 
+
 .corpo-texto { font-family: 'Montserrat', sans-serif; font-size: 0.88rem; line-height: 1.35; color: var(--texto-carta); text-align: justify; white-space: pre-line; }
+
 
 .assinatura-noivos {
 
+
 font-family: 'Eyesome Script', cursive; 
+
 
 font-size: 2.1rem; color: var(--texto-carta);
 
+
 margin-top: -5px; margin-bottom: 15px;
+
 
 font-variant-ligatures: discretionary-ligatures;
 
+
 -webkit-font-feature-settings: "liga" 1, "dlig" 1;
+
 
 font-feature-settings: "liga" 1, "dlig" 1;
 
+
 }
+
 
 
 .fixed-bottom-wrapper {
 
+
 display: flex; justify-content: center; gap: 15px;
+
 
 padding: 25px 0 calc(15px + env(safe-area-inset-bottom));
 
+
 border-top: 1px solid rgba(78, 55, 18, 0.1);
+
 
 margin: 0 20px 10px;
 
+
 }
+
 
 
 .icon-item { display: flex; flex-direction: column; align-items: center; text-decoration: none; color: var(--texto-carta); position: relative; width: 70px; }
 
+
 .label-text { font-size: 0.52rem; font-weight: 700; text-transform: uppercase; position: absolute; top: -12px; width: 100%; text-align: center; }
+
 
 .circle { width: 48px; height: 48px; background: white; border: 1.5px solid var(--dourado); border-radius: 50%; display: flex; justify-content: center; align-items: center; box-shadow: 0 3px 10px rgba(0,0,0,0.1); overflow: hidden; }
 
+
 .circle img { width: 100%; height: 100%; object-fit: cover; }
+
 
 </style>
 
+
 </head>
+
 
 <body class="travar">
 
 
+
 <audio id="musica-tema" loop>
 
+
 <source src="musica.mp3" type="audio/mpeg">
+
 
 </audio>
 
 
+
 <div id="intro-overlay">
+
 
 <div class="intro-box">
 
+
 <p style="font-family: 'Playfair Display', serif; color: var(--texto-carta); margin-bottom: 20px;">Para viver esta experiência completa, ative a trilha sonora do nosso convite.</p>
+
 
 <button class="btn-intro" onclick="iniciarExperiencia()">ATIVAR</button>
 
-</div>
 
 </div>
+
+
+</div>
+
 
 
 <section class="hero" id="hero-section">
 
+
 <div class="overlay"></div>
+
 
 <div class="mensagem-topo">
 
+
 <h2 id="hero-guest-name"></h2>
+
 
 <span style="font-size: 0.48rem; text-transform: uppercase; letter-spacing: 2px; margin-top: 10px; opacity: 0.8; display: block;">Toque no lacre para abrir</span>
 
+
 </div>
+
 
 
 <div class="hero-content">
 
+
 <div class="envelope-wrapper">
+
 
 <div class="envelope-flap" id="envelope-flap"><img src="carta.png" alt="Aba" style="width: 100%;"></div>
 
+
 <div class="envelope-corpo" style="z-index: 1;"><img src="carta.png" alt="Corpo" style="width: 100%; filter: drop-shadow(0 15px 35px rgba(0,0,0,0.4));"></div>
+
 
 <div class="wax-seal" id="lacre" onclick="animarAbertura()"><img src="lacre.png" alt="Lacre" style="width: 100%;"></div>
 
-</div>
 
 </div>
+
+
+</div>
+
 
 </section>
 
 
+
 <main class="main-content" id="main-content">
+
 
 <div class="carta-layout">
 
+
 <div class="fixed-top-wrapper"></div>
+
 
 <div class="scroll-box">
 
-<h2 class="saudacao"><span id="gender-prefix">Estimado</span>, <span id="letter-guest-name">Convidado</span>.</h2>
+
+<h2 class="saudacao"><span id="gender-prefix">Estimado</span>(a) <span id="letter-guest-name">Convidado</span>,</h2>
+
 
 <p class="corpo-texto">
 
-É com imensa honra e alegria que solicitamos a sua presença para testemunhar a união solene de Naiane e Breno [cite: 2026-03-05].
+
+É com o coração cheio de alegria que convidamos você para ser testemunha do início da nossa nova história. Diante de Deus e das pessoas que mais amamos, diremos o nosso "sim" e adoraríamos ter você ao nosso lado no dia 26 de julho de 2026. A nossa celebração acontecerá às 16h30, no Espaço Prime, em Santa Luzia - MA.
 
 
-Diante de Deus e de nossos entes mais queridos, daremos inicio a uma nova história no dia 26 de julho de 2026 às 16:30 no Espaço Prime em Santa Luzia - MA [cite: 2025-12-29, 2026-03-06].
+
+Preparamos com muito carinho um guia com detalhes sobre o traje e algumas orientações essenciais para que você aproveite cada momento desse dia conosco em total harmonia. Pedimos que o consulte com especial atenção, pois planejamos tudo pensando no seu conforto e na beleza do nosso encontro.
 
 
-Para que possamos celebrar em harmonia, solicitamos a gentileza de confirmar a sua presença até o dia 15 de junho. Caso deseje nos honrar com um presente, nossa lista e o portal de confirmação estão no botão abaixo [cite: 2026-03-06].
 
+Para nos ajudar com os preparativos, pedimos a gentileza de confirmar sua presença até o dia 15 de junho. Caso deseje nos honrar com um presente, nossa lista e o portal de confirmação podem ser acessados através do botão abaixo.
 
-Junto com essa carta enviamos um documento com detalhes essenciais sobre o traje exigido e diretrizes para o bom transcorrer da cerimonia. Pedimos que consulte com especial atenção [cite: 2026-03-05].
 
 </p>
 
-<p style="font-family: 'Montserrat', sans-serif; font-size: 0.82rem; color: var(--texto-carta); margin-top: 15px; font-weight: 600;">Com profunda estima,</p>
+
+<p style="font-family: 'Montserrat', sans-serif; font-size: 0.82rem; color: var(--texto-carta); margin-top: 15px; font-weight: 600;">Com todo o nosso afeto,</p>
+
 
 <p class="assinatura-noivos">Naiane e Breno</p>
 
+
 </div>
+
 
 
 <div class="fixed-bottom-wrapper">
 
+
 <a href="https://maps.app.goo.gl/zSxRWbAYqjyuA7gy7" target="_blank" class="icon-item"><span class="label-text">Mapa</span><div class="circle"><img src="mapa.png"></div></a>
+
 
 <a href="https://noivos.casar.com/breno-e-naiane" target="_blank" class="icon-item"><span class="label-text">Presentes</span><div class="circle"><img src="presentes.png"></div></a>
 
+
 <a href="URL_RSVP" target="_blank" class="icon-item"><span class="label-text">Confirmar</span><div class="circle"><img src="confirmar.png"></div></a>
+
 
 <a href="URL_DOCUMENTO" target="_blank" class="icon-item"><span class="label-text">Anexo</span><div class="circle"><img src="anexo.png"></div></a>
 
-</div>
 
 </div>
+
+
+</div>
+
 
 </main>
 
 
+
 <script>
+
 
 const musica = document.getElementById('musica-tema');
 
 
+
 window.addEventListener("load", function() {
+
 
 const urlParams = new URLSearchParams(window.location.search);
 
+
 const nome = urlParams.get('n') || "Convidado";
+
 
 const genero = urlParams.get('g') || "M"; 
 
+
 document.getElementById('hero-guest-name').innerText = nome + ", nossa história ganha um novo capítulo e você faz parte dela!";
+
 
 document.getElementById('letter-guest-name').innerText = nome;
 
+
 document.getElementById('gender-prefix').innerText = (genero.toUpperCase() === 'F') ? "Estimada" : "Estimado";
+
 
 });
 
 
+
 function iniciarExperiencia() {
+
 
 document.getElementById('intro-overlay').classList.add('intro-exit');
 
+
 musica.play().catch(e => console.log("Som liberado"));
+
 
 setTimeout(() => { document.getElementById('intro-overlay').style.display = 'none'; }, 1000);
 
+
 }
+
 
 
 function animarAbertura() {
 
+
 const flap = document.getElementById('envelope-flap');
+
 
 const lacre = document.getElementById('lacre');
 
+
 const hero = document.getElementById('hero-section');
+
 
 const main = document.getElementById('main-content');
 
+
 flap.classList.add('abrir-flap');
+
 
 lacre.classList.add('subir-lacre');
 
+
 setTimeout(() => {
+
 
 hero.style.opacity = '0';
 
+
 main.style.display = 'block';
+
 
 setTimeout(() => { 
 
+
 main.classList.add('visivel'); 
+
 
 hero.style.display = 'none'; 
 
+
 }, 800);
+
 
 }, 625); 
 
+
 }
+
 
 </script>
 
+
 </body>
 
+
 </html>
+
+
